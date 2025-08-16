@@ -21,11 +21,11 @@ export class Cache {
         this.#cache.set(key,obj);
     };
 
-    get<T>(key:string):T | undefined {
+    get<T>(key:string): T | undefined {
         if (this.#cache.has(key)) { 
             const entry = this.#cache.get(key);
             if (entry) {
-                return entry.val;
+                return entry.val as T;
                 }
             }
         return undefined;

@@ -2,6 +2,7 @@ import { commandExit } from "./command_exit.js";
 import { commandHelp } from "./command_help.js";
 import { commandMap } from "./command_map.js";
 import { commandMapB } from "./command_mapb.js";
+import { commandExplore } from "./command_explore.js";
 import { CLICommand,State } from "./state.js";
 
 
@@ -12,6 +13,11 @@ export function getCommands(): Record<string, CLICommand> {
       name: "exit",
       description: "Exits the pokedex",
       callback: commandExit, 
+    },
+    explore: {
+      name: "explore",
+      description:"Lists all pokemon found in a location-area",
+      callback:commandExplore,
     },
     help: {
         name: "help",

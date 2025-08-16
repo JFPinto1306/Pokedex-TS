@@ -6,8 +6,7 @@ import { PokeAPI } from "./poke_api.js";
 export type CLICommand = {
   name: string;
   description: string;
-  callback: (state:State) => Promise<void>;
-
+  callback: (state:State,...args: string[]) => Promise<void>;
 };
 
 export type State = {
@@ -26,7 +25,7 @@ export async function initState(): Promise<State> {
   });
 
   const commands = getCommands();
-  const pokeObj = new PokeAPI();
+  const pokeObj = new PokeAPI(500);
   const prevLocationsURL = null;
   const nextLocationsURL = "https://pokeapi.co/api/v2/location-area/?offset=0&limit=20";
 
@@ -51,7 +50,7 @@ export async function initState(): Promise<State> {
     const command = words[0];
     if (command in state.commands) {
       try{
-        await state.commands[command].callback(state);
+        await state.commands[command].callback(state,...words.slice(1));
       } catch(e) {
         console.log(e);
       }

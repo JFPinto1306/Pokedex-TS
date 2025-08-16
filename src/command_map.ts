@@ -5,6 +5,7 @@ export async function commandMap(state: State): Promise<void> {
     if (state.nextLocationsURL) {
         const locations = await state.pokeObj.fetchLocations(state.nextLocationsURL);
         
+        
         // set obj prev and next location url
         state.prevLocationsURL = locations.previous;
         state.nextLocationsURL = locations.next
