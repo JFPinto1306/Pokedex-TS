@@ -1,5 +1,5 @@
-import {CLICommand, State} from "./state.js";
-import {Pokemon} from "./poke_api.js";
+import {State} from "./state.js";
+import {PokemonShallow, Location} from "./poke_api.js";
 
 export async function commandExplore(state: State,...args: string[]): Promise<void> {
     
@@ -11,11 +11,11 @@ export async function commandExplore(state: State,...args: string[]): Promise<vo
     const LocationDetailURL = `https://pokeapi.co/api/v2/location-area/${args[0]}`;
     
     try {
-        const details = await state.pokeObj.fetchLocationDetails(LocationDetailURL);
+        const details: Location = await state.pokeObj.fetchLocationDetails(LocationDetailURL);
         console.log("Found Pokemon:")
 
         for (const encounter of details.pokemon_encounters) {
-            const pokemon: Pokemon = encounter.pokemon;
+            const pokemon: PokemonShallow = encounter.pokemon;
             console.log(`- ${pokemon.name}`);
         }
         

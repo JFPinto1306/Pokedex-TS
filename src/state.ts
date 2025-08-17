@@ -1,6 +1,7 @@
 import { createInterface, type Interface } from "readline";
 import { getCommands } from "./commands.js";
 import { PokeAPI } from "./poke_api.js";
+import {Pokemon} from "./poke_api.js";
 
 
 export type CLICommand = {
@@ -15,6 +16,7 @@ export type State = {
   pokeObj: PokeAPI;
   nextLocationsURL: string | null;
   prevLocationsURL: string | null;
+  pokedex: Record<string,Pokemon>;
 }
 
 export async function initState(): Promise<State> {
@@ -28,13 +30,15 @@ export async function initState(): Promise<State> {
   const pokeObj = new PokeAPI(500);
   const prevLocationsURL = null;
   const nextLocationsURL = "https://pokeapi.co/api/v2/location-area/?offset=0&limit=20";
+  const pokedex = {}
 
   const state: State = {
     rl: rl,
     commands: commands,
     pokeObj: pokeObj,
     prevLocationsURL: prevLocationsURL,
-    nextLocationsURL: nextLocationsURL
+    nextLocationsURL: nextLocationsURL,
+    pokedex: pokedex,
   };
 
   state.rl.prompt();
