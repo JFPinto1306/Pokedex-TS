@@ -152,12 +152,12 @@ export interface Pokemon {
 }
 
 export interface Ability {
-  ability: Ability2
+  ability: AbilityShallow
   is_hidden: boolean
   slot: number
 }
 
-export interface Ability2 {
+export interface AbilityShallow {
   name: string
   url: string
 }
@@ -468,20 +468,20 @@ export interface Icons2 {
 export interface Stat {
   base_stat: number
   effort: number
-  stat: Stat2
+  stat: StatShallow
 }
 
-export interface Stat2 {
+export interface StatShallow {
   name: string
   url: string
 }
 
 export interface Type {
   slot: number
-  type: Type2
+  type: TypeShallow
 }
 
-export interface Type2 {
+export interface TypeShallow {
   name: string
   url: string
 }
